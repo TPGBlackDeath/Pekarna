@@ -1,0 +1,408 @@
+@font-face {
+    font-family: "Bakery";
+    src: url("bakery.otf") format("opentype"),
+         url("bakery.ttf") format("truetype");
+    font-display: swap;
+}
+
+:root {
+    --brown: #d3bdad;
+    --cream: #fff6eb;
+    --field: #e9d5c1;
+    --ink: #000000;
+    --muted: #6f6259;
+    --error: #8a1f11;
+    --radius-large: clamp(32px, 5.5vw, 68px);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: var(--ink);
+    font-family: "Open Sans", "Segoe UI", Tahoma, Arial, sans-serif;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+h1,
+h2 {
+    margin: 0;
+    font-family: "Bakery", cursive;
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+p {
+    margin: 0;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Header */
+.site-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+    width: min(85.5%, 1092px);
+    min-height: 96px;
+    margin: 0 auto;
+    padding: 12px clamp(16px, 2vw, 24px);
+    background: var(--brown);
+    border-radius: 0 0 64px 64px;
+}
+
+.site-header h1 {
+    grid-column: 2;
+    color: #ffffff;
+    font-size: clamp(34px, 4.5vw, 56px);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.site-header .button {
+    background: var(--cream);
+}
+
+.header-start {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+}
+
+.header-end {
+    grid-column: 3;
+    justify-self: end;
+}
+
+/* Buttons */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 136px;
+    min-height: 56px;
+    padding: 8px 24px;
+    background: var(--brown);
+    border: 0;
+    border-radius: 28px;
+    color: var(--ink);
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.button:hover,
+.site-header .button:hover {
+    background: var(--field);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+}
+
+/* Page layout */
+.page {
+    display: grid;
+    gap: 68px;
+    width: min(91.5%, 1172px);
+    margin: 68px auto;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 84px;
+}
+
+.split--flip .media {
+    order: 2;
+}
+
+/* Images were cropped from the design, so the radius scales with the image. */
+.media {
+    aspect-ratio: 135 / 84;
+    overflow: hidden;
+    border-radius: 12.6% / 20.2%;
+}
+
+.media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.media--wide {
+    aspect-ratio: 292 / 135;
+    border-radius: 5.8% / 12.6%;
+}
+
+/* Cards */
+.card {
+    position: relative;
+    padding: 44px 76px;
+    background: var(--cream);
+    border-radius: var(--radius-large);
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    font-size: 56px;
+}
+
+.card p {
+    max-width: 23.5em;
+}
+
+.card--more {
+    display: flex;
+    flex-direction: column;
+}
+
+.card--more .button {
+    align-self: flex-end;
+    margin: auto -48px -16px 0;
+}
+
+.card--location {
+    min-height: 340px;
+}
+
+/* Contact and order panels */
+.panel {
+    padding: 44px 72px 72px;
+    background: var(--brown);
+    border-radius: var(--radius-large);
+}
+
+.panel h2 {
+    margin-bottom: 20px;
+    font-size: 56px;
+}
+
+.fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 36px;
+}
+
+.field {
+    grid-column: span 2;
+}
+
+.field--half {
+    grid-column: span 1;
+}
+
+.pill,
+.field input,
+.field textarea {
+    display: block;
+    width: 100%;
+    min-height: 68px;
+    margin: 0;
+    padding: 20px 56px;
+    background: var(--field);
+    border: 0;
+    border-radius: 34px;
+    color: var(--muted);
+    font: inherit;
+    font-weight: 700;
+}
+
+.pill--large,
+.field textarea {
+    min-height: 304px;
+    border-radius: 64px;
+}
+
+.field input,
+.field textarea {
+    color: var(--ink);
+}
+
+.field textarea {
+    resize: vertical;
+}
+
+.field ::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
+
+.field [aria-invalid="true"] {
+    outline: 2px solid var(--error);
+}
+
+.error {
+    margin: 6px 0 0 56px;
+    color: var(--error);
+}
+
+.error:empty {
+    display: none;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.form-actions .button {
+    background: var(--cream);
+}
+
+.form-actions .button:hover {
+    background: var(--field);
+}
+
+.form-status {
+    margin-top: 20px;
+    padding: 16px 32px;
+    background: var(--cream);
+    border-radius: 28px;
+}
+
+.form-status[hidden] {
+    display: none;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* Smaller screens */
+@media (max-width: 1100px) {
+    .page {
+        gap: 40px;
+        margin: 40px auto;
+    }
+
+    .split {
+        gap: 40px;
+    }
+
+    .card {
+        padding: 32px 40px;
+    }
+
+    .card--more .button {
+        margin: 20px -16px -8px 0;
+    }
+
+    .panel {
+        padding: 32px 40px 40px;
+    }
+
+    .pill,
+    .field input,
+    .field textarea {
+        padding-inline: 32px;
+    }
+
+    .error {
+        margin-left: 32px;
+    }
+}
+
+@media (max-width: 760px) {
+    .site-header {
+        width: 100%;
+        min-height: 72px;
+        border-radius: 0 0 32px 32px;
+    }
+
+    .site-header .button {
+        min-width: 0;
+        min-height: 44px;
+        padding: 6px 16px;
+    }
+
+    .split {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    /* Keep every picture directly above the text it belongs to. */
+    .split--flip .media {
+        order: 0;
+    }
+
+    .card,
+    .panel {
+        padding: 28px 24px;
+    }
+
+    .card h2,
+    .panel h2 {
+        font-size: 44px;
+    }
+
+    .card--more .button {
+        margin: 20px 0 0;
+    }
+
+    .card--location {
+        min-height: 0;
+    }
+
+    .fields {
+        gap: 12px;
+    }
+
+    .field--half {
+        grid-column: span 2;
+    }
+
+    .pill,
+    .field input,
+    .field textarea {
+        min-height: 56px;
+        padding: 15px 24px;
+        border-radius: 28px;
+    }
+
+    .pill--large,
+    .field textarea {
+        min-height: 200px;
+        border-radius: 32px;
+    }
+
+    .error {
+        margin-left: 24px;
+    }
+}
+
+/* Equal side columns no longer fit, so the title centres in the leftover space. */
+@media (max-width: 480px) {
+    .site-header {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    .site-header h1 {
+        font-size: 30px;
+    }
+}
